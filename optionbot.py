@@ -46,7 +46,12 @@ async def start(update: Update, context: CallbackContext) -> int:
 async def handle_id_search(update: Update, context: CallbackContext) -> int:
     id_number = update.message.text.strip()
     result = search_identity(id_number, df_main)
+    
+    # إرسال النتيجة للمستخدم
     await update.message.reply_text(result, parse_mode='Markdown')
+
+    # إعادة طلب رقم الهوية
+    await update.message.reply_text("أرسل لي رقم الهوية أخر للبحث عنه")
     return ID_SEARCH
 
 
